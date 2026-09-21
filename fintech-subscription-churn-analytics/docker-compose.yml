@@ -1,0 +1,21 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-novapay}
+      POSTGRES_USER: ${POSTGRES_USER:-novapay}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-novapay_local}
+    ports:
+      - "${DB_PORT:-54329}:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./data/generated:/data/generated:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-novapay} -d ${POSTGRES_DB:-novapay}"]
+      interval: 2s
+      timeout: 3s
+      retries: 20
+
+volumes:
+  postgres_data:
+
