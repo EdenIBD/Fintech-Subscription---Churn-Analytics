@@ -1,1 +1,11 @@
-fintech-subscription-churn-analytics/docs/learning_guide.md
+docs/learning_guide.md
+.env
+data/generated/
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.DS_Store
+.idea/
+.vscode/
+.ipynb_checkpoints/
